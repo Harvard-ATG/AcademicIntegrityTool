@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @policy_template.name %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @policy_template.is_active %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @policy_template.body %>
+</p>
+
+<%= link_to 'Edit', edit_policy_template_path(@policy_template) %> |
+<%= link_to 'Back', policy_templates_path %>

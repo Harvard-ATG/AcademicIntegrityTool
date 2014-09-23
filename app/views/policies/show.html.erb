@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= sanitize @policy.body, :tags => %w(p b strong em i ul ol li), :attributes => %w(style) %>
+</p>
+
+<% if @is_admin %>
+  <% if !@policy.is_published? %>
+    <p>
+      <strong>Note:</strong> This policy has not been published, and is not being displayed to students. To publish it, you must first <%= link_to 'edit this policy', edit_policy_path(@policy) %>, then click the &quot;Publish&quot; button.
+    </p>
+  <% else %>
+    <p>
+      As an instructor, you may <%= link_to 'edit this policy', edit_policy_path(@policy) %>.
+    </p>
+  <% end %>
+<% end %>

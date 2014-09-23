@@ -1,0 +1,29 @@
+<%= form_for(@policy_template) do |f| %>
+  <% if @policy_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@policy_template.errors.count, "error") %> prohibited this policy_template from being saved:</h2>
+
+      <ul>
+      <% @policy_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :is_active %><br>
+    <%= f.check_box :is_active %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
