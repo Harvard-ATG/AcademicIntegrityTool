@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  context_id: MyString
+  policy_template_id: 1
+  is_published: false
+  published_by: MyString
+  body: MyText
+
+two:
+  context_id: MyString
+  policy_template_id: 1
+  is_published: false
+  published_by: MyString
+  body: MyText
