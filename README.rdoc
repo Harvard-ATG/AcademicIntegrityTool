@@ -1,28 +1,6 @@
-== README
+== Academic Integrity Policy Tool
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The Academic Integrity Policy Tool is an LTI-compliant application written with the Ruby on Rails open-source web framework. Although LTI-compliant, the application relies on interacting with the Canvas Learning Management System and proprietary data from Harvard University. Therefore, some serious tweaking is required to have the tool running in an environment outside of the Harvard University LMS. Future updates will remediate these issues by abstracting the appropriate functionality.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+At the moment, this documentation is sparse (indeed, "sparse" is being generous, since the documentation you are reading is about all that exists). This, too, will be remdiated. Promise.
