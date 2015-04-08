@@ -1,31 +1,42 @@
 class PolicyTemplatesController < ApplicationController
   before_action :set_policy_template, only: [:show, :edit, :update, :destroy]
 
-  # Skips the need for an LTI launch for several of this controller's
-  # actions. The function 'require_lti_launch' is defined in 
+  # Uncomment to skip the need for an LTI launch for these
+  # requests. The function 'require_lti_launch' is defined in 
   # ApplicationController.rb.
-  skip_before_action :require_lti_launch
+  # skip_before_action :require_lti_launch
   
+  # Standard Rails page that lists all policy templates.
+  #
   # GET /policy_templates
   # GET /policy_templates.json
   def index
     @policy_templates = PolicyTemplate.all
   end
 
+  # Standard Rails page that shows an individual policy
+  # template.
+  #
   # GET /policy_templates/1
   # GET /policy_templates/1.json
   def show
   end
 
+  # Standard Rails request that shows an edit page.
   # GET /policy_templates/new
+  #
   def new
     @policy_template = PolicyTemplate.new
   end
 
+  # Standard Rails request that shows an edit screen.
   # GET /policy_templates/1/edit
+  #
   def edit
   end
 
+  # Default Rails procedure that generates a new policy template.
+  #
   # POST /policy_templates
   # POST /policy_templates.json
   def create
@@ -42,8 +53,11 @@ class PolicyTemplatesController < ApplicationController
     end
   end
 
+  # Default Rails procedure for updating a policy template.
+  #
   # PATCH/PUT /policy_templates/1
   # PATCH/PUT /policy_templates/1.json
+  #
   def update
     respond_to do |format|
       if @policy_template.update(policy_template_params)
@@ -56,6 +70,9 @@ class PolicyTemplatesController < ApplicationController
     end
   end
 
+  
+  # Default Rails procedure for deleting a policy template.
+  #
   # DELETE /policy_templates/1
   # DELETE /policy_templates/1.json
   def destroy
