@@ -9,6 +9,9 @@ class ApplicationController < ActionController::Base
   before_action :require_lti_launch
   private
 
+  # Checks to see if a session variable has been defined by the
+  # LTI launch. If no session variable exists, then return an
+  # error.
   def require_lti_launch
   	if !session[:lti_launch]
   		redirect_to lti_error_url, :alert => "This tool requires a valid LTI launch and session."

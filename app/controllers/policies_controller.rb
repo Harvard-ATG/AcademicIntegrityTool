@@ -1,6 +1,23 @@
 class PoliciesController < ApplicationController
+ 
+  # TOODO: We should probably add a before_action that checks to 
+  # determine if the user is an admin or not. Will add security.
   before_action :set_policy, only: [:show, :edit, :update, :destroy]
 
+  
+  # Shows the main page of the Academic Policy Wizard depending
+  # on whether the user is an admin or a student.
+  #
+  # * If the user is an admin and no policy has been created,
+  #   show the three templates to the admin.
+  # * If the user is an admin and a policy has been created,
+  #   show the edit screen to the admin.
+  # * If the user is a student and a policy has not been 
+  #   created/published, then show a message stating that 
+  #   there is no policy. 
+  # * If the user is a student and a policy has been
+  #   created/published, display the policy.
+  #
   # GET /policies
   # GET /policies.json
   def index
@@ -13,6 +30,7 @@ class PoliciesController < ApplicationController
     @policy = Policy.find_by :context_id => @context_id
 
 
+    # If the user is an admin, then show the edit screen.
     if @policy && @is_admin
       render 'edit'
 
@@ -24,6 +42,7 @@ class PoliciesController < ApplicationController
     end
   end
 
+  # Shows an individual policy, but only if it is published.
   # GET /policies/1
   # GET /policies/1.json
   def show
@@ -37,8 +56,12 @@ class PoliciesController < ApplicationController
     end
   end
 
+  # Shows the 'new policy' screen to administrators, which may
+  # include a chosen policy template.
+  #
   # GET /policies/new
   def new
+
     # Create a new Policy object.
     @policy = Policy.new
 
@@ -52,33 +75,44 @@ class PoliciesController < ApplicationController
     # Render the form
   end
 
+  # Default Rails procedure for displaying an 'edit policy' screen.
   # GET /policies/1/edit
   def edit
   end
 
+  # Default Rails procedure for creating a new policy (unless)
+  # a cancel button has been pressed. 
+  #
   # POST /policies
   # POST /policies.json
   def create
-
     # If the cancel button is pressed, redirect back to the index page
-    # of the policies controller
+    # of the policies controller. 
+    #
+    # @@Note: Should this be handled in the form link itself? 
     if params[:cancel] 
       redirect_to policies_url
       return
     end
 
-
+    # Create a Policy object and set some standard data.
     @policy              = Policy.new
     @policy.body         = params[:policy][:body]
     @policy.published_by = session[:uid]
     @policy.context_id   = session[:context_id]
 
+    # Determine if Policy is being published or not.
     if params[:publish]
       @policy.is_published = true
     else
       @policy.is_published = false;
     end
 
+    # Determin if this is a custom policy, which really
+    # doesn't make sense if we think about, because if no
+    # custom parameter is passed, it becomes a template??
+    #
+    # @@NOTE: Horrible, horrible code logic. Redo.
     if params[:custom]
       @policy.policy_template_id = params[:custom]
     else 
@@ -96,11 +130,16 @@ class PoliciesController < ApplicationController
     end
   end
 
+  # Default Rails procedure for updating a policy (unless)
+  # a cancel button has been pressed. 
+  #
   # PATCH/PUT /policies/1
   # PATCH/PUT /policies/1.json
   def update
     # If the cancel button is pressed, redirect back to the index page
     # of the policies controller
+    #
+    # @@NOTE: Add to form, as opposed to in this log?
     if params[:cancel] 
       redirect_to @policy
       return
@@ -123,7 +162,9 @@ class PoliciesController < ApplicationController
       end
     end
   end
-
+  
+  # Default Rails procedure for removing a policy. 
+  #
   # DELETE /policies/1
   # DELETE /policies/1.json
   def destroy
