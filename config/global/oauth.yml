@@ -3,7 +3,6 @@
 # See http://railsware.com/blog/2013/10/16/rails-configuration-in-the-proper-way/
 
 # OAuth Key    = policy-wizard
-# OAuth Secret = Th!s1sTh3Ac&d3m1cP0l!c%W1z4rd
 
 development:
   oauth_secret: secret
