@@ -12,3 +12,4 @@ testing:
 
 production:
   oauth_secret: <%= ENV['POLICY_WIZARD_OAUTH_SECRET'] %>
+
