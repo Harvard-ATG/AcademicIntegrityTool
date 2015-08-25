@@ -97,8 +97,8 @@ class LtiController < ApplicationController
       # Mike's lame attempt at security
       session[:lti_launch] = true
 
-      # Determine if we are an instuctor
-      if provider.instructor?
+      # Determine if we are an instuctor, TA, or designer
+      if provider.instructor? || provider.ta? || provider.content_developer?
         session[:is_admin] = true
       else
         session[:is_admin] = false
