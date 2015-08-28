@@ -62,6 +62,7 @@ class LtiController < ApplicationController
     # Grab our oauth consumer key and secret
     oauth_secret       = Global.oauth.oauth_secret
     oauth_consumer_key = params[:oauth_consumer_key]
+    logger.debug "Oauth secret: '#{oauth_secret}'"
 
     # Create new request to apply to the ToolProvider object.
     req  = OAuth::RequestProxy::RackRequest.new request
